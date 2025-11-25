@@ -3,7 +3,6 @@ import Home from './pages/Home';
 import Menu from './pages/Menu';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
-import PaymentSuccess from './pages/PaymentSuccess';
 import Orders from './pages/Orders';
 import Profile from './pages/Profile';
 import AIAssistant from './pages/AIAssistant';
@@ -47,12 +46,6 @@ const routes: RouteConfig[] = [
     name: 'Checkout',
     path: '/checkout',
     element: <Checkout />,
-    visible: false,
-  },
-  {
-    name: 'Payment Success',
-    path: '/payment-success',
-    element: <PaymentSuccess />,
     visible: false,
   },
   {

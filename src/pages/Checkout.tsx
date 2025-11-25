@@ -2,20 +2,19 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/components/auth/AuthProvider';
-import { supabase } from '@/db/supabase';
-import { discountsApi } from '@/db/api';
+import { discountsApi, ordersApi, profilesApi } from '@/db/api';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
-import { CreditCard, Tag } from 'lucide-react';
+import { ShoppingBag, Tag } from 'lucide-react';
 import type { Discount } from '@/types/types';
 
 export default function Checkout() {
   const { items, subtotal, clearCart } = useCart();
-  const { profile } = useAuth();
+  const { user, profile, refreshProfile } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
@@ -64,7 +63,7 @@ export default function Checkout() {
     : 0;
   const total = subtotal - discountAmount;
 
-  const handleCheckout = async () => {
+  const handlePlaceOrder = async () => {
     if (!formData.name.trim() || !formData.mobile.trim()) {
       toast({
         title: 'Error',
@@ -77,36 +76,48 @@ export default function Checkout() {
     setLoading(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke('create_stripe_checkout', {
-        body: JSON.stringify({
-          items: items.map(item => ({
-            id: item.id,
-            name: item.name,
-            price: item.price,
-            quantity: item.quantity,
-            image_url: item.image_url,
-          })),
-          customerName: formData.name,
-          customerMobile: formData.mobile,
-          tableNumber: formData.tableNumber,
-          currency: 'usd',
-        }),
+      const orderData = {
+        user_id: user?.id || null,
+        customer_name: formData.name,
+        customer_mobile: formData.mobile,
+        table_number: formData.tableNumber || null,
+        items: items.map(item => ({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+          image_url: item.image_url || undefined,
+        })),
+        subtotal: subtotal,
+        discount_amount: discountAmount,
+        total_amount: total,
+        currency: 'INR',
+      };
+
+      const order = await ordersApi.createOrder(orderData);
+
+      if (user && profile) {
+        await profilesApi.updateProfile(user.id, {
+          name: formData.name,
+          mobile: formData.mobile,
+          table_number: formData.tableNumber || null,
+          total_spent: profile.total_spent + total,
+        });
+        await refreshProfile();
+      }
+
+      clearCart();
+
+      toast({
+        title: 'Success',
+        description: 'Your order has been placed successfully!',
       });
 
-      if (error) {
-        const errorMsg = await error?.context?.text();
-        throw new Error(errorMsg || 'Failed to create checkout session');
-      }
-
-      if (data?.url) {
-        clearCart();
-        window.open(data.url, '_blank');
-        navigate('/orders');
-      }
+      navigate('/orders');
     } catch (error) {
       toast({
         title: 'Error',
-        description: error instanceof Error ? error.message : 'Failed to process checkout',
+        description: error instanceof Error ? error.message : 'Failed to place order',
         variant: 'destructive',
       });
     } finally {
@@ -224,11 +235,11 @@ export default function Checkout() {
               <Button
                 className="w-full"
                 size="lg"
-                onClick={handleCheckout}
+                onClick={handlePlaceOrder}
                 disabled={loading}
               >
-                <CreditCard className="h-5 w-5 mr-2" />
-                {loading ? 'Processing...' : 'Pay with Stripe'}
+                <ShoppingBag className="h-5 w-5 mr-2" />
+                {loading ? 'Placing Order...' : 'Place Order'}
               </Button>
             </CardContent>
           </Card>

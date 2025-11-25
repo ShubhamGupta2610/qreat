@@ -93,6 +93,38 @@ export const menuApi = {
 };
 
 export const ordersApi = {
+  async createOrder(orderData: {
+    user_id: string | null;
+    customer_name: string;
+    customer_mobile: string;
+    table_number: string | null;
+    items: Array<{ id: string; name: string; price: number; quantity: number; image_url?: string }>;
+    subtotal: number;
+    discount_amount: number;
+    total_amount: number;
+    currency: string;
+  }) {
+    const { data, error } = await supabase
+      .from('orders')
+      .insert({
+        user_id: orderData.user_id,
+        customer_name: orderData.customer_name,
+        customer_mobile: orderData.customer_mobile,
+        table_number: orderData.table_number,
+        items: orderData.items,
+        subtotal: orderData.subtotal,
+        discount_amount: orderData.discount_amount,
+        total_amount: orderData.total_amount,
+        currency: orderData.currency,
+        status: 'received',
+      })
+      .select()
+      .maybeSingle();
+    
+    if (error) throw error;
+    return data;
+  },
+
   async getUserOrders(userId: string) {
     const { data, error } = await supabase
       .from('orders')
