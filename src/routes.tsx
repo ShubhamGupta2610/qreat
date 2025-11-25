@@ -9,17 +9,20 @@ import Profile from './pages/Profile';
 import AIAssistant from './pages/AIAssistant';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import MenuManagement from './pages/admin/MenuManagement';
 import OrderManagement from './pages/admin/OrderManagement';
 import CustomerManagement from './pages/admin/CustomerManagement';
 import DiscountManagement from './pages/admin/DiscountManagement';
+import AdminSettings from './pages/admin/AdminSettings';
 
 export interface RouteConfig {
   name: string;
   path: string;
   element: ReactNode;
   visible?: boolean;
+  requireAdminAuth?: boolean;
 }
 
 const routes: RouteConfig[] = [
@@ -83,34 +86,52 @@ const routes: RouteConfig[] = [
     visible: false,
   },
   {
+    name: 'Admin Login',
+    path: '/admin/login',
+    element: <AdminLogin />,
+    visible: false,
+  },
+  {
     name: 'Admin Dashboard',
     path: '/admin',
     element: <AdminDashboard />,
     visible: false,
+    requireAdminAuth: true,
   },
   {
     name: 'Menu Management',
     path: '/admin/menu',
     element: <MenuManagement />,
     visible: false,
+    requireAdminAuth: true,
   },
   {
     name: 'Order Management',
     path: '/admin/orders',
     element: <OrderManagement />,
     visible: false,
+    requireAdminAuth: true,
   },
   {
     name: 'Customer Management',
     path: '/admin/customers',
     element: <CustomerManagement />,
     visible: false,
+    requireAdminAuth: true,
   },
   {
     name: 'Discount Management',
     path: '/admin/discounts',
     element: <DiscountManagement />,
     visible: false,
+    requireAdminAuth: true,
+  },
+  {
+    name: 'Admin Settings',
+    path: '/admin/settings',
+    element: <AdminSettings />,
+    visible: false,
+    requireAdminAuth: true,
   },
 ];
 

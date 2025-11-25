@@ -160,6 +160,14 @@ export default function Home() {
           <ShoppingCart className="mr-2 h-5 w-5" />
           Start Ordering Now
         </Button>
+        <div className="mt-8">
+          <button
+            onClick={() => navigate('/admin/login')}
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Admin Portal
+          </button>
+        </div>
       </section>
     </div>
   );

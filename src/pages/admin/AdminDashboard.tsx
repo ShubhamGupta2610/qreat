@@ -4,11 +4,13 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ordersApi, profilesApi, menuApi } from '@/db/api';
-import { Users, ShoppingBag, UtensilsCrossed, DollarSign, Tag, ArrowRight } from 'lucide-react';
+import { Users, ShoppingBag, UtensilsCrossed, DollarSign, Tag, ArrowRight, LogOut, Settings } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 export default function AdminDashboard() {
   const { profile } = useAuth();
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [stats, setStats] = useState({
     totalOrders: 0,
     totalCustomers: 0,
@@ -47,6 +49,15 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('admin_session');
+    toast({
+      title: 'Success',
+      description: 'Logged out successfully',
+    });
+    navigate('/admin/login');
+  };
+
   const statCards = [
     {
       title: 'Total Orders',
@@ -83,9 +94,21 @@ export default function AdminDashboard() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-2 gradient-text">Admin Dashboard</h1>
-        <p className="text-muted-foreground">Manage your restaurant operations</p>
+      <div className="mb-8 flex justify-between items-center">
+        <div>
+          <h1 className="text-4xl font-bold mb-2 gradient-text">Admin Dashboard</h1>
+          <p className="text-muted-foreground">Manage your restaurant operations</p>
+        </div>
+        <div className="flex gap-2">
+          <Button onClick={() => navigate('/admin/settings')} variant="outline" className="gap-2">
+            <Settings className="h-4 w-4" />
+            Settings
+          </Button>
+          <Button onClick={handleLogout} variant="outline" className="gap-2">
+            <LogOut className="h-4 w-4" />
+            Logout
+          </Button>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
