@@ -175,7 +175,7 @@ export default function Checkout() {
                       {item.quantity}x {item.name}
                     </span>
                     <span className="font-medium">
-                      ${(item.price * item.quantity).toFixed(2)}
+                      ₹{(item.price * item.quantity).toFixed(2)}
                     </span>
                   </div>
                 ))}
@@ -184,7 +184,7 @@ export default function Checkout() {
               <div className="border-t pt-4 space-y-2">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
-                  <span className="font-medium">${subtotal.toFixed(2)}</span>
+                  <span className="font-medium">₹{subtotal.toFixed(2)}</span>
                 </div>
                 
                 {applicableDiscount && (
@@ -193,13 +193,13 @@ export default function Checkout() {
                       <Tag className="h-4 w-4" />
                       <span>Discount ({applicableDiscount.discount_percentage}%)</span>
                     </div>
-                    <span className="font-medium">-${discountAmount.toFixed(2)}</span>
+                    <span className="font-medium">-₹{discountAmount.toFixed(2)}</span>
                   </div>
                 )}
                 
                 <div className="flex justify-between text-lg font-bold pt-2 border-t">
                   <span>Total</span>
-                  <span className="text-primary">${total.toFixed(2)}</span>
+                  <span className="text-primary">₹{total.toFixed(2)}</span>
                 </div>
               </div>
 
@@ -214,8 +214,8 @@ export default function Checkout() {
                 <div className="text-xs text-muted-foreground bg-muted p-3 rounded-md">
                   <p className="font-medium mb-1">💡 Loyalty Rewards</p>
                   <p>
-                    You've spent ${profile.total_spent.toFixed(2)}. 
-                    Spend ${(discounts[discounts.length - 1].min_spending - profile.total_spent).toFixed(2)} more 
+                    You've spent ₹{profile.total_spent.toFixed(2)}. 
+                    Spend ₹{(discounts[discounts.length - 1].min_spending - profile.total_spent).toFixed(2)} more 
                     to unlock {discounts[discounts.length - 1].discount_percentage}% off!
                   </p>
                 </div>

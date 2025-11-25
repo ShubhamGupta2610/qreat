@@ -156,7 +156,7 @@ export default function Menu() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-2xl font-bold text-primary">${item.price.toFixed(2)}</p>
+                <p className="text-2xl font-bold text-primary">₹{item.price.toFixed(2)}</p>
               </CardContent>
               <CardFooter className="flex gap-2">
                 <div className="flex items-center gap-2 border rounded-md">

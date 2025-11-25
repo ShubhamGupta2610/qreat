@@ -108,7 +108,7 @@ export default function Home() {
                   </div>
                   <div>
                     <p className="font-semibold">Bronze Tier</p>
-                    <p className="text-sm text-muted-foreground">Spend $50+ to unlock</p>
+                    <p className="text-sm text-muted-foreground">Spend ₹50+ to unlock</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -117,7 +117,7 @@ export default function Home() {
                   </div>
                   <div>
                     <p className="font-semibold">Silver Tier</p>
-                    <p className="text-sm text-muted-foreground">Spend $100+ to unlock</p>
+                    <p className="text-sm text-muted-foreground">Spend ₹100+ to unlock</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -126,7 +126,7 @@ export default function Home() {
                   </div>
                   <div>
                     <p className="font-semibold">Gold Tier</p>
-                    <p className="text-sm text-muted-foreground">Spend $200+ to unlock</p>
+                    <p className="text-sm text-muted-foreground">Spend ₹200+ to unlock</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -135,7 +135,7 @@ export default function Home() {
                   </div>
                   <div>
                     <p className="font-semibold">Platinum Tier</p>
-                    <p className="text-sm text-muted-foreground">Spend $500+ to unlock</p>
+                    <p className="text-sm text-muted-foreground">Spend ₹500+ to unlock</p>
                   </div>
                 </div>
               </div>

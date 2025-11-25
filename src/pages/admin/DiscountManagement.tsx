@@ -290,7 +290,7 @@ export default function DiscountManagement() {
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Min Spending</span>
-                  <span className="font-medium">${discount.min_spending.toFixed(2)}</span>
+                  <span className="font-medium">₹{discount.min_spending.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Discount</span>

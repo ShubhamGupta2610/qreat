@@ -99,7 +99,7 @@ export default function Orders() {
                               {item.quantity}x {item.name}
                             </span>
                             <span className="font-medium">
-                              ${(item.price * item.quantity).toFixed(2)}
+                              ₹{(item.price * item.quantity).toFixed(2)}
                             </span>
                           </div>
                         ))}
@@ -109,17 +109,17 @@ export default function Orders() {
                     <div className="border-t pt-4 space-y-1">
                       <div className="flex justify-between text-sm">
                         <span>Subtotal</span>
-                        <span>${order.subtotal.toFixed(2)}</span>
+                        <span>₹{order.subtotal.toFixed(2)}</span>
                       </div>
                       {order.discount_amount > 0 && (
                         <div className="flex justify-between text-sm text-accent">
                           <span>Discount</span>
-                          <span>-${order.discount_amount.toFixed(2)}</span>
+                          <span>-₹{order.discount_amount.toFixed(2)}</span>
                         </div>
                       )}
                       <div className="flex justify-between font-bold text-lg pt-2 border-t">
                         <span>Total</span>
-                        <span className="text-primary">${order.total_amount.toFixed(2)}</span>
+                        <span className="text-primary">₹{order.total_amount.toFixed(2)}</span>
                       </div>
                     </div>
 

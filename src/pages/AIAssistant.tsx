@@ -24,7 +24,7 @@ const responses: Record<string, string> = {
   'show me popular starters': 'Our most popular starters include Caesar Salad, Bruschetta, and Chicken Wings. All are freshly prepared and highly rated by our customers!',
   'what are your main courses': 'We offer delicious main courses including Grilled Steak, Salmon Fillet, and Pasta Carbonara. Each dish is prepared with premium ingredients.',
   'recommend a dessert': 'I highly recommend our Chocolate Cake or Tiramisu! Both are customer favorites and perfect for ending your meal on a sweet note.',
-  'tell me about discounts': 'We have a loyalty rewards program! Spend $50+ for 5% off, $100+ for 10% off, $200+ for 15% off, and $500+ for 20% off on all future orders.',
+  'tell me about discounts': 'We have a loyalty rewards program! Spend ₹50+ for 5% off, ₹100+ for 10% off, ₹200+ for 15% off, and ₹500+ for 20% off on all future orders.',
   'how do i track my order': 'You can track your order status in the "My Orders" section. Your order will go through: Received → Preparing → Delivered → Completed.',
   'default': 'Thank you for your message! I can help you with menu recommendations, order assistance, and information about our loyalty program. Feel free to ask me anything!',
 };

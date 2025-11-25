@@ -184,7 +184,7 @@ export default function Profile() {
               <div className="text-center">
                 <p className="text-sm text-muted-foreground mb-2">Total Spent</p>
                 <p className="text-4xl font-bold text-primary">
-                  ${profile.total_spent.toFixed(2)}
+                  ₹{profile.total_spent.toFixed(2)}
                 </p>
               </div>
             </CardContent>
@@ -224,7 +224,7 @@ export default function Profile() {
                     <div className="flex justify-between text-sm">
                       <span>Progress</span>
                       <span className="font-medium">
-                        ${profile.total_spent.toFixed(2)} / ${nextDiscount.min_spending.toFixed(2)}
+                        ₹{profile.total_spent.toFixed(2)} / ₹{nextDiscount.min_spending.toFixed(2)}
                       </span>
                     </div>
                     <div className="w-full bg-border rounded-full h-2">
@@ -236,7 +236,7 @@ export default function Profile() {
                       />
                     </div>
                     <p className="text-xs text-muted-foreground">
-                      ${(nextDiscount.min_spending - profile.total_spent).toFixed(2)} more to unlock
+                      ₹{(nextDiscount.min_spending - profile.total_spent).toFixed(2)} more to unlock
                     </p>
                   </div>
                 </div>

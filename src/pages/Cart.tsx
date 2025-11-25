@@ -57,7 +57,7 @@ export default function Cart() {
                     <h3 className="font-semibold text-lg">{item.name}</h3>
                     <p className="text-sm text-muted-foreground mb-2">{item.category}</p>
                     <p className="text-lg font-bold text-primary">
-                      ${item.price.toFixed(2)}
+                      ₹{item.price.toFixed(2)}
                     </p>
                   </div>
                   <div className="flex flex-col items-end justify-between">
@@ -107,7 +107,7 @@ export default function Cart() {
                       {item.quantity}x {item.name}
                     </span>
                     <span className="font-medium">
-                      ${(item.price * item.quantity).toFixed(2)}
+                      ₹{(item.price * item.quantity).toFixed(2)}
                     </span>
                   </div>
                 ))}
@@ -115,7 +115,7 @@ export default function Cart() {
               <div className="border-t pt-4">
                 <div className="flex justify-between text-lg font-bold">
                   <span>Subtotal</span>
-                  <span className="text-primary">${subtotal.toFixed(2)}</span>
+                  <span className="text-primary">₹{subtotal.toFixed(2)}</span>
                 </div>
                 <p className="text-xs text-muted-foreground mt-2">
                   Discounts will be applied at checkout based on your spending history

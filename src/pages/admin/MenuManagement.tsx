@@ -294,7 +294,7 @@ export default function MenuManagement() {
                 {item.description || 'No description'}
               </p>
               <div className="flex justify-between items-center">
-                <span className="text-xl font-bold text-primary">${item.price.toFixed(2)}</span>
+                <span className="text-xl font-bold text-primary">₹{item.price.toFixed(2)}</span>
                 <span className="text-sm text-muted-foreground">{item.category}</span>
               </div>
               <div className="flex items-center gap-2">

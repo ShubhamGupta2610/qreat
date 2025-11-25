@@ -88,7 +88,7 @@ export default function CustomerManagement() {
                     <span className="text-sm text-muted-foreground">Total Spent</span>
                   </div>
                   <span className="text-lg font-bold text-primary">
-                    ${customer.total_spent.toFixed(2)}
+                    ₹{customer.total_spent.toFixed(2)}
                   </span>
                 </div>
               </div>
